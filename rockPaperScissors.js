@@ -1,33 +1,65 @@
-//Rock, paper and scissors game. 5 rounds. The Odin Project.
+//Rock, paper and scissors game with UI 5 rounds. The Odin Project.
+
+
+const buttons = document.querySelectorAll('button');
+//const playerPressed = document.querySelectorAll('.Paper');
+
+
+let playerSelection;
+
+//function getPlayerChoice (){
+//    //pressedBtn = button.textContent
+//    console.log(pressedBtn)
+//    return pressedBtn
+//};
+
+buttons.forEach((button) => 
+button.addEventListener('click', () => {
+
+    playerSelection = button.textContent;
+    console.log(playerSelection);
+    //getComputerChoice()
+    playRound();
+    
+}));
+//buttons.addEventListener('click', getPlayerChoice);
+
 
 
 
 let computerCount = 0;
 let playerCount = 0;
-
-game();
-game();
-game();
-game();
-game();
+announceWinner();
+//game();     //round 1
 
 
 
-function game() {
 
-    function getPlayerChoice() {
+//function game() {
+
+
+    //function getPlayerChoice() {
         
-    const playerInput = prompt (`Choose either Rock, Paper or Scissors`);
-    let pSFormatted = playerInput.toLowerCase();
-    let frontLetter = pSFormatted.slice(0,1).toUpperCase();
-    let wordLength = pSFormatted.slice(1, );
-    let playersChoice = `${frontLetter}${wordLength}`;
-    console.log(playersChoice);
-    return playersChoice
+        //const playerInput = prompt (`Choose either Rock, Paper or Scissors`);
+        //let pSFormatted = playerInput.toLowerCase();
+        //let frontLetter = pSFormatted.slice(0,1).toUpperCase();
+        //let wordLength = pSFormatted.slice(1, );
+        //let playersChoice = `${frontLetter}${wordLength}`;
+        //const choices = ['Rock', 'Paper', 'Scissors'];
+        
+        
+    //let playersChoice = 'Rock';  
+     //   console.log(playersChoice)
+    //return playersChoice
+        
+    //};
 
-};
+    //getPlayerChoice;
+    
+    
+ 
 
-getPlayerChoice;
+
 
 
 
@@ -42,13 +74,12 @@ function getComputerChoice() {
     
 };
 
-getComputerChoice;
+//getComputerChoice;
 
 
 
 function playRound(){
     
-    playerSelection = getPlayerChoice();
     computerSelection = getComputerChoice();
     
     if (playerSelection === computerSelection) {
@@ -77,10 +108,10 @@ function playRound(){
 
 };
 
-console.log(playRound());
+//console.log(playRound());
 
 
-}
+//}
 
 
 
@@ -96,4 +127,4 @@ function announceWinner (){
 
 };
 
-console.log(announceWinner());
+//console.log(announceWinner());
