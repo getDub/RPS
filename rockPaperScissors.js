@@ -1,99 +1,136 @@
-//Rock, paper and scissors game. 5 rounds. The Odin Project.
+//Rock, paper and scissors game with UI 5 rounds. The Odin Project.
 
 
+const buttons = document.querySelectorAll('button');
+const playersHand = document.querySelector('.playerChoice');
+const computersHand = document.querySelector('.compuChoice');
+const playerScore = document.querySelector('.playerScore');
+const computerScore = document.querySelector('.compuScore');
+const winner = document.querySelector('.winner');
+const gameScore = document.querySelector('.gameStatus');
+const btnDiv = document.querySelector('.buttons');
 
-let computerCount = 0;
+
+//(function ()
+//{    
+let playerSelection;
+
+buttons.forEach((button) => 
+button.addEventListener('click', () => 
+{    
+    playerSelection = button.textContent;
+    playersHand.textContent = `Player Choice: ${playerSelection} `;
+    winner.textContent = `${announceWinner()}`;
+    gameScore.textContent = `${playRound()}`;
+    
+}));
+
 let playerCount = 0;
-
-game();
-game();
-game();
-game();
-game();
+let computerCount = 0;
 
 
-
-function game() {
-
-    function getPlayerChoice() {
+function announceWinner ()
+{
+    if (playerCount   === 5)
+    {      
+        const restart = document.createElement('div');
+        restart.textContent = 'Game Over';
+        btnDiv.appendChild(restart);
+        console.log(restart)
+        restart.addEventListener('click', () => {
+            location.reload();
+        });
         
-    const playerInput = prompt (`Choose either Rock, Paper or Scissors`);
-    let pSFormatted = playerInput.toLowerCase();
-    let frontLetter = pSFormatted.slice(0,1).toUpperCase();
-    let wordLength = pSFormatted.slice(1, );
-    let playersChoice = `${frontLetter}${wordLength}`;
-    console.log(playersChoice);
-    return playersChoice
-
+    
+        return `Congratulations! You Win! ${playerCount} to ${computerCount}.`;
+    } 
+    else if (computerCount  === 5 )
+    {
+        const restart = document.createElement('button');
+        restart.textContent = 'Game Over';
+        btnDiv.appendChild(restart);
+        console.log(restart)
+        restart.addEventListener('click', () => {
+            location.reload();
+        });
+       
+        return `Computer wins. ${computerCount} to ${playerCount}. Better luck next time.`;
+    } 
+    else 
+    {
+        return `Game in progress`;
+    }
+    
 };
 
-getPlayerChoice;
 
-
-
-function getComputerChoice() {
-    
+function getComputerChoice()
+{    
     const choices = ['Rock', 'Paper', 'Scissors'];
-    
     let random = Math.floor(Math.random() * 3);
     let computersChoice = choices.at(random);
-    console.log(computersChoice);
     return computersChoice;
-    
 };
 
-getComputerChoice;
 
-
-
-function playRound(){
-    
-    playerSelection = getPlayerChoice();
+function playRound()
+{    
     computerSelection = getComputerChoice();
-    
-    if (playerSelection === computerSelection) {
+    computersHand.textContent = `Computers Choice: ${computerSelection} `;
+
+    if (playerSelection === computerSelection) 
+    {
         return `It's a tie. You chose ${playerSelection} and the computer chose ${computerSelection}`;
-    } else if (playerSelection === "Rock" && computerSelection === `Paper`) {
+    } 
+    else if (playerSelection === "Rock" && computerSelection === `Paper`) 
+    {
         computerCount++;
-        return `You loose. Computers ${computerSelection} beats your ${playerSelection}. Scores are, You ${playerCount} and computer ${computerCount}.`;
-    } else if (playerSelection === "Rock" && computerSelection === `Scissors`) {
+        playerScore.textContent = `Player Score = ${playerCount}`;
+        computerScore.textContent = `Computer Score = ${computerCount}`;
+        return `You loose. Computers' ${computerSelection} beats your ${playerSelection}.`;
+    } 
+    else if (playerSelection === "Rock" && computerSelection === `Scissors`) 
+    {
         playerCount++;
-        return `You Win. Your ${playerSelection} beats computers ${computerSelection}. Scores are, You ${playerCount} and computer ${computerCount}.`;
-    } else if (playerSelection === "Paper" && computerSelection === `Scissors`) {
+        playerScore.textContent = `Player Score = ${playerCount}`;
+        computerScore.textContent = `Computer Score = ${computerCount}`;
+        return `You Win. Your ${playerSelection} beats computers ${computerSelection}.`;
+    } 
+    else if (playerSelection === "Paper" && computerSelection === `Scissors`) 
+    {
         computerCount++;
-        return `You loose. Computers ${computerSelection} beats your ${playerSelection}. Scores are, You ${playerCount} and computer ${computerCount}.`;
-    } else if (playerSelection === "Paper" && computerSelection === `Rock`) {
+        playerScore.textContent = `Player Score = ${playerCount}`;
+        computerScore.textContent = `Computer Score = ${computerCount}`;
+        return `You loose. Computers' ${computerSelection} beats your ${playerSelection}.`;
+    } 
+    else if (playerSelection === "Paper" && computerSelection === `Rock`) 
+    {
         playerCount++;
-        return `You Win. Your ${playerSelection} beats computers ${computerSelection}. Scores are, You ${playerCount} and computer ${computerCount}.`;
-    } else if (playerSelection === "Scissors" && computerSelection === `Rock`) {
+        playerScore.textContent = `Player Score = ${playerCount}`;
+        computerScore.textContent = `Computer Score = ${computerCount}`;
+        return `You Win. Your ${playerSelection} beats computers ${computerSelection}.`;
+    } else if (playerSelection === "Scissors" && computerSelection === `Rock`) 
+    {
         computerCount++;
-        return `You loose. Computers ${computerSelection} beats your ${playerSelection}. Scores are, You ${playerCount} and computer ${computerCount}.`;
-    } else if (playerSelection === "Scissors" && computerSelection === `Paper`) {
+        playerScore.textContent = `Player Score = ${playerCount}`;
+        computerScore.textContent = `Computer Score = ${computerCount}`;
+        return `You loose. Computers' ${computerSelection} beats your ${playerSelection}.`;
+    } 
+    else if (playerSelection === "Scissors" && computerSelection === `Paper`) 
+    {
         playerCount++;
-        return `You Win. Your ${playerSelection} beats computers ${computerSelection}. Scores are, You ${playerCount} and computer ${computerCount}.`;
-    }  else if (playerSelection != 'Rock' || playerSelection != "Paper" || playerSelection != "Scissors") {
+        playerScore.textContent = `Player Score = ${playerCount}`;
+        computerScore.textContent = `Computer Score = ${computerCount}`;
+        return `You Win. Your ${playerSelection} beats computers ${computerSelection}.`;
+    }  
+    else if (playerSelection != 'Rock' || playerSelection != "Paper" || playerSelection != "Scissors") 
+    {
         return `Your choice is outside the scope of this game. Please choose Rock, Paper or Scissors`;
-    }
-
+    } 
 };
 
-console.log(playRound());
+//clear scores
+//clear choices
+//stop game being played by removing 
 
-
-}
-
-
-
-function announceWinner (){
-    
-    if (computerCount < playerCount){
-        return `Congratulations! You Win! ${playerCount} to ${computerCount}.`;
-    } else if (computerCount > playerCount){
-        return `Computer wins. ${computerCount} to ${playerCount}. Better luck next time.`;
-    } else if (computerCount === playerCount){
-        return`It's a tie. ${playerCount} to ${computerCount}. Play agian.`;
-    }
-
-};
-
-console.log(announceWinner());
+//}());
